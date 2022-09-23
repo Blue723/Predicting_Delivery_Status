@@ -4,11 +4,36 @@
 
 ### Business Understanding
 
-The project will help predict a packages deliverable status as either Late Delivery, Advance Shipping, and Ship on time. 
+Everyone wants their package delivered on time, but as we know this, does not always happen for many reasons. The project aims to predict a packages deliverable status as either Advance Shipping, and Ship on time, Late Delivery. This will help the customer have an expectation of the packages delivery status and, if need be, make plans for the package depending on the package's importance. 
 
 ##### Data
 
 The data being used is information from a company's supply chain about shipping orders like payment type, customer information, order information, delivery dates and status. The timeframe of the model is from 2015-01 - 2018-02.
+
+- Type
+- Scheduled Days for Shipment
+- Sales per Customer
+- Delivery Status
+- Customer Segment
+- Customer Zipcode
+- Department ID
+- Department Name
+- Latitude
+- Longitude
+- Market
+- Order Item Discount
+- Order Item Discount Rate
+- Order Item ID
+- Order Item Product Price
+- Order Item Profit Ratio
+- Order Item Quntity 
+- Sales
+- Order Profit Per Order
+- Order Region
+- Shipping Mode
+- Order Date Year-Month
+- Shipping Date Year-Month
+- Order Date Year
 
 Some features were removed because they cause data leakage, redundant information, or added too many features when converting categorical data. 
 
@@ -56,9 +81,11 @@ The baseline model will be based off a training set using logistic regression. T
 
 ![image.png](img/model_img/lr_train_conf_matx.png)
 
+### Advanced vs On Time vs Late Delivery Models
+
 #### Logistic Regression Model
 
-The testing set with our logistic regression does not improve overall score with 0.61.
+The testing set with the logistic regression does not improve overall score with 0.61.
 
 ![](img/model_img/lr_test_conf_matx.png)
 
@@ -83,9 +110,38 @@ Using random search on our Random Forest and XGBoost models to find optimal para
 
 Random Search for Random Forest (0.64) only does better than the logistic regression models. Random Search for XGBoost (0.71) is the best overall scoring model. 
 
+### On Time vs Late Delivery Models
+
+The models seem to have difficulty differentiating between Advanced Delivery and Shipping on Time. I think ultimately the customer want to know if thier package is on time or late. So I decided to see the accuracy of the models when I combine Advanced and Shipping on Time. 
+
+#### Logistic Regression
+
+![](img/model_img/ontime_late_lr.png)
+
+The testing set with the logistic regression when observing only Shipping on Time and Late Delivery does not improve overall score with 0.70.
+
+#### Random Forest Model
+
+![](img/model_img/ontime_late_rf.png)
+
+Random Forest test model improved overall score to 0.78 when observing Shipping on Time and Late Delivery.
+
+#### XGBoost Model
+
+![](img/model_img/ontime_late_xgb.png)
+
+XGBoost test model resulted at .74, the second best model with our obsrvations. 
+
+#### Random Search Model
+
+![](img/model_img/ontime_late_randomsearch_rf.png)
+![](img/model_img/ontime_late_randomsearch_xgb.png)
+
+The adjusted hyperparameters for Random Forest and XGBoost with scores .71 and .78 respectivly. 
+
 ### Conclusion
 
-In conclusion Random Search XGBoost marginally did the best overall score with predicting delivery status 0.71. On time shipping could take away from the overall accuracy of the model, its values could be close to the other variables, making it hard for the model to distinguish between late and advance delivery. 
+In conclusion Random Search XGBoost marginally did the better overall score with predicting delivery status between Advanced, Shipping on Time, and Late Delivery at 0.71. On time shipping could take away from the overall accuracy of the model, its values could be close to the other variables, making it hard for the model to distinguish between late and advance delivery. Therefore, when I combined Advanced and Shipping on Time, the models improved with Random Search XGBoost model being the best classifier at .78
 
 ##### Next Steps
 
