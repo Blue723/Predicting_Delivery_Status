@@ -4,7 +4,7 @@
 
 ### Business Understanding
 
-Everyone wants their package delivered on time, but as we know this, does not always happen for many reasons. The project aims to predict a packages deliverable status as either Advance Shipping, and Ship on time, Late Delivery. This will help the customer have an expectation of the packages delivery status and, if need be, make plans for the package depending on the package's importance. 
+Everyone wants their package delivered on time, but as we know this, does not always happen for many reasons. The project aims to predict a packages deliverable status as either Advance Shipping, and Ship on time, Late Delivery. This will help the company expect potential late deliveries and incurring customer service expenses or start discussing a plan to avoid a high volume of late deliveries. 
 
 ##### Data
 
